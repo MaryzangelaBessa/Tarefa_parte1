@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <title>Início</title>
+</head>
+    <body>
+        <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                        <a class="navbar-brand" href="#">Sistema</a>
+                           <nav class="navbar navbar-light bg-light">
+                              <a class="navbar-brand" href="{% url 'evento:list' %}">Evento</a>
+                              <a class="navbar-brand" href="{% url 'organizador:list' %}">Organizador</a>
+                              <a class="navbar-brand" href="{% url 'participante:list' %}">Participante</a>
+                           </nav>
+                 </nav>
+              </div>
+           </div>
+        </div>
+    </body>
+</html>

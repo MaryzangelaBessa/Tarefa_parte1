@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Exclusão | Organizador
+{% endblock %}
+
+{% block header %}
+    Exclusão do organizador
+{% endblock %}
+
+{% block content %}
+
+  <form method="post">
+      {% csrf_token %}
+    <br>
+    <div class="panel panel-danger">
+      <div class="panel-heading  text-center">
+          Confirma exclusão de
+        "{{ object|safe }}"?
+      </div>
+      <div class="panel-body text-center">
+        <a type="button" class="btn btn-primary" href="{% url object.detail_url object.pk %}">Cancelar</a>
+        <button type="submit" class="btn btn-danger">Excluir</button>
+      </div>
+    </div>
+  </form>
+
+{% endblock %}

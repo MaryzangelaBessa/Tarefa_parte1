@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Evento
+{% endblock %}
+
+{% block header %}
+    Detalhe do evento
+{% endblock %}
+
+{% block content %}
+
+          <div class="form-group col-md-4">
+            <p><label>Título</label></p>
+            <p>{{ object.titulo }}</p>
+          </div>
+
+          <div class="form-group col-md-2">
+            <p><label>Data</label></p>
+            <p>{{ object.data }}</p>
+          </div>
+
+          <div class="form-group col-md-2">
+            <p><label>Hora</label></p>
+            <p>{{ object.hora }}</p>
+          </div>
+
+          <div class="form-group col-md-2">
+            <p><label>Tipo</label></p>
+            <p>{{ object.get_tipo_display }}</p>
+          </div>
+
+          <div class="form-group col-md-2">
+            <p><label>Local</label></p>
+            <p>{{ object.local }}</p>
+          </div>
+
+          <div class="form-group col-md-12">
+            <hr>
+            <a type="button" class="btn btn-primary" href="{% url object.list_url %}">Voltar</a>
+            <a type="button" class="btn btn-primary" href="{% url object.edit_url object.pk %}">Editar</a>
+            <a type="button" class="btn btn-danger" href="{% url object.delete_url object.pk %}">Excluir</a>
+          </div>
+
+{% endblock %}

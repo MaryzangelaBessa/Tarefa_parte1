@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+{% if object %}
+    Editar | Participante
+{% else %}
+    Cadastrar | Participante
+{% endif %}
+{% endblock %}
+
+{% block header %}
+    {% if object.pk %}
+        Alteração de participante
+    {% else %}
+        Cadastro de participante
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+        {% endfor %}
+
+        <div class="form-group col-md-3">
+        	{% render_field form.nome class="form-control" placeholder=form.nome.label %}
+            {% for error in form.nome.errors %}
+            	<span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group col-md-2">
+            {% render_field form.cpf class="form-control" placeholder=form.cpf.label %}
+            {% for error in form.cpf.errors %}
+    	        <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group col-md-3">
+            {% render_field form.email class="form-control" placeholder=form.email.label %}
+            {% for error in form.email.errors %}
+	            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group col-md-2">
+            {% render_field form.rg class="form-control" placeholder=form.rg.label %}
+            {% for error in form.rg.errors %}
+	            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+		<div class="form-group col-md-2">
+            {% render_field form.status class="form-control" placeholder=form.status.label %}
+            {% for error in form.status.errors %}
+	            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        </div>
+        <div class="form-group panel-body text-center">
+        	<button type="submit" class="btn btn-success">
+        		<span class="glyphicon glyphicon-ok"></span> Salvar
+        	</button>
+	        {% if object %}
+	        	<a href="{% url object.detail_url object.pk  %}" class="btn btn-danger">
+	        		<span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+	        {% else %}
+	            <a href="{% url 'participante:list' %}" class="btn btn-danger">
+	            	<span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+	        {% endif %}
+        </div>
+    </form>
+{% endblock %}

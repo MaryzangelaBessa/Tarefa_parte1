@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+{% if object %}
+    Editar | Evento
+{% else %}
+    Cadastrar | Evento
+{% endif %}
+{% endblock %}
+
+{% block header %}
+    {% if object.pk %}
+        Alteração de evento
+    {% else %}
+        Cadastro de evento
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+        {% endfor %}
+
+        <div class="form-group col-md-4">
+        	{% render_field form.titulo class="form-control" placeholder=form.titulo.label %}
+            {% for error in form.titulo.errors %}
+            	<span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group col-md-2">
+            {% render_field form.data class="form-control" placeholder=form.data.label %}
+            {% for error in form.data.errors %}
+    	        <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group col-md-2">
+            {% render_field form.hora class="form-control" placeholder=form.hora.label %}
+            {% for error in form.hora.errors %}
+	            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group col-md-2">
+            {% render_field form.tipo class="form-control" placeholder=form.tipo.label %}
+            {% for error in form.tipo.errors %}
+    	    	<span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group col-md-2">
+            {% render_field form.local class="form-control" placeholder=form.local.label %}
+            {% for error in form.local.errors %}
+        	    <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group panel-body text-center">
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-ok"></span> Salvar
+            </button>
+            {% if object %}
+                <a href="{% url object.detail_url object.pk  %}" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+            {% else %}
+                <a href="{% url 'evento:list' %}" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+            {% endif %}
+        </div>
+    </form>
+{% endblock %}
